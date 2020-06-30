@@ -5,7 +5,7 @@ import Timer from './Timer/index'
 function App() {
   return (
     <div className="App">
-      <Timer className="timer"/>
+      <Timer/>
       <div className="main-button">开始工作</div>
     </div>
   );

@@ -4,7 +4,7 @@ import './style.css';
 function Timer() {
   return (
     <div className="root">
-      时钟
+      <div>时间</div>
     </div>
   );
 }
