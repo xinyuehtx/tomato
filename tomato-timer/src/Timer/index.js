@@ -8,16 +8,26 @@ const formatTime = (time) => {
     return [minutes, seconds];
 }
 
-function Timer() {
-    const [remainTime, setRemainTime] = useState(() => 25 * 60);
+function Timer(props) {
+    const { run, onTimeout } = props;
+    const [remainTime, setRemainTime] = useState(() => 1 * 10);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setRemainTime((r) => r - 1);
-        }, 1000);
+        let interval;
+        if (run) {
+            interval = setInterval(() => {
+                setRemainTime((r) => r - 1);
 
+            }, 1000);
+        }
         return () => { clearInterval(interval) };
-    }, []);
+    }, [run]);
+
+    useEffect(() => {
+        if (run && remainTime === 0) {
+            onTimeout && onTimeout();
+        }
+    }, [run, remainTime, onTimeout]);
 
     const [minutes, seconds] = formatTime(remainTime);
 

@@ -5,13 +5,18 @@ import Timer from './Timer/index'
 function App() {
   const [run, setRun] = useState(false);
 
-  const handleClick=()=>{
-    setRun(!run);
+  const handleClick = () => {
+    setRun((r)=>!r);
+  }
+
+  const handleTimeout = () => {
+    console.log('时间到')
+    setRun((r)=>!r);
   }
 
   return (
     <div className="App">
-      <Timer />
+      <Timer run={run} onTimeout={handleTimeout} />
       <div className="main-button" onClick={handleClick}>{
         run
           ? '休息一下'
