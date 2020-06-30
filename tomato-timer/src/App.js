@@ -1,27 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Timer from './Timer/index'
+import * as runStates from './constants'
 
 function App() {
-  const [run, setRun] = useState(false);
+  const [run, setRun] = useState(runStates.INIT);
+  const [inWork, setInWork] = useState(true);
+  const [initTime, setInitTime] = useState(1);
 
   const handleClick = () => {
-    setRun((r)=>!r);
+    setRun((r) => {
+      if (r === runStates.RUNNING) {
+        return runStates.PAUSE;
+      }
+      else {
+        return runStates.RUNNING;
+      }
+    });
+  }
+
+  const handleRestClick = () => {
+    debugger;
+    if (run === runStates.INIT) {
+      setRun(runStates.RUNNING);
+    }
+    else {
+      setRun(runStates.INIT);
+      setInWork((work) => !work);
+    }
   }
 
   const handleTimeout = () => {
-    console.log('时间到')
-    setRun((r)=>!r);
+    setRun(runStates.INIT);
+    setInWork((work) => !work);
   }
+
+  useEffect(() => {
+    if (run === runStates.INIT) {
+      inWork ? setInitTime(25) : setInitTime(5);
+    }
+  }, [run, inWork]);
 
   return (
     <div className="App">
-      <Timer run={run} onTimeout={handleTimeout} />
-      <div className="main-button" onClick={handleClick}>{
-        run
-          ? '休息一下'
-          : '开始工作'
-      }</div>
+      <Timer run={run} initTime={initTime} onTimeout={handleTimeout} />
+      {
+        inWork
+          ? <div className="main-button" onClick={handleClick}>{
+            run === runStates.INIT
+              ? '开始工作'
+              : run === runStates.RUNNING
+                ? '休息一下'
+                : '继续工作'
+          }</div>
+          : <div className="main-button" onClick={handleRestClick}>{
+            run === runStates.INIT
+              ? '开始休息'
+              : '结束休息'
+          }</div>
+      }
+
     </div>
   );
 }

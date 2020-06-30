@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
+import * as runStates from '../constants'
 
 const formatTime = (time) => {
     let minutes = Math.floor(time / 60).toString().padStart(2, 0);
@@ -9,12 +10,16 @@ const formatTime = (time) => {
 }
 
 function Timer(props) {
-    const { run, onTimeout } = props;
-    const [remainTime, setRemainTime] = useState(() => 1 * 10);
+    const { run, initTime, onTimeout } = props;
+    const [remainTime, setRemainTime] = useState(0);
+
+    useEffect(() => {
+        setRemainTime(initTime * 60);
+    }, [initTime]);
 
     useEffect(() => {
         let interval;
-        if (run) {
+        if (run === runStates.RUNNING) {
             interval = setInterval(() => {
                 setRemainTime((r) => r - 1);
 
@@ -24,7 +29,7 @@ function Timer(props) {
     }, [run]);
 
     useEffect(() => {
-        if (run && remainTime === 0) {
+        if (run === runStates.RUNNING && remainTime === 0) {
             onTimeout && onTimeout();
         }
     }, [run, remainTime, onTimeout]);
