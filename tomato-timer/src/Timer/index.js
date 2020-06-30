@@ -23,7 +23,7 @@ function Timer() {
 
     return (
         <div className="root">
-            <div>{`${minutes}:${seconds}`}</div>
+            <div className="time">{`${minutes}:${seconds}`}</div>
         </div>
     );
 }

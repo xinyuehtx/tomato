@@ -8,3 +8,12 @@
     justify-content: center;
     margin: 50px;
   }
+
+
+.time{
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 3em;
+    color: tomato;
+}
