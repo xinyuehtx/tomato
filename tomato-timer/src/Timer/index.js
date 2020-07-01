@@ -29,7 +29,7 @@ function Timer(props) {
     }, [run]);
 
     useEffect(() => {
-        if (run === runStates.RUNNING && remainTime === 0) {
+        if (run === runStates.RUNNING && remainTime < 0) {
             onTimeout && onTimeout();
         }
     }, [run, remainTime, onTimeout]);
