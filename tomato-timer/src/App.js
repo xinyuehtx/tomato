@@ -32,8 +32,16 @@ function App() {
 
   const handleTimeout = () => {
     setRun(runStates.INIT);
-    setInWork((work) => !work);
+    const newWorkState = !inWork
+    setInWork(newWorkState);
+    if (newWorkState) {
+      alert('休息时间结束');
+    }
+    else{
+      alert('工作时间结束');
+    }
   }
+
 
   useEffect(() => {
     if (run === runStates.INIT) {
