@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Timer from './Timer/index'
-import * as runStates from './constants'
+import Timer from './Timer/index';
+import Setting from './Setting/index';
+import * as runStates from './constants';
 
 function App() {
   const [run, setRun] = useState(runStates.INIT);
@@ -68,7 +69,7 @@ function App() {
     <div className="App">
       {
         showSetting
-          ? <div className="setting-container">设置</div>
+          ? <Setting/>
           : <>
             <Timer run={run} initTime={initTime} onTimeout={handleTimeout} />
             {
