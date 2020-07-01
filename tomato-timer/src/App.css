@@ -6,8 +6,6 @@
   justify-content: center;
 }
 
-
-
 .main-button{
   margin: 20px;
   color: white;
@@ -19,6 +17,11 @@
   border-radius: 15px;
   width: 200px;
   height: 50px;
+  cursor: pointer;
+}
+
+.setting-button{
+  color: tomato;
   cursor: pointer;
 }
 

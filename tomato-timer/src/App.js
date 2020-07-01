@@ -7,6 +7,14 @@ function App() {
   const [run, setRun] = useState(runStates.INIT);
   const [inWork, setInWork] = useState(true);
   const [initTime, setInitTime] = useState(1);
+  const [workTime, setWorkTime] = useState(25);
+  const [restTime, setRestTime] = useState(5);
+
+  useEffect(() => {
+    if (run === runStates.INIT) {
+      inWork ? setInitTime(workTime) : setInitTime(restTime);
+    }
+  }, [run, inWork, workTime, restTime]);
 
   const handleClick = () => {
     setRun((r) => {
@@ -37,17 +45,17 @@ function App() {
     if (newWorkState) {
       alert('休息时间结束');
     }
-    else{
+    else {
       alert('工作时间结束');
     }
   }
 
+  const handleSettingButtonClick = () => {
+    setRun(runStates.INIT);
+    setWorkTime(10);
+    setRestTime(2);
+  }
 
-  useEffect(() => {
-    if (run === runStates.INIT) {
-      inWork ? setInitTime(25) : setInitTime(5);
-    }
-  }, [run, inWork]);
 
   return (
     <div className="App">
@@ -67,7 +75,7 @@ function App() {
               : '结束休息'
           }</div>
       }
-
+      <div className="setting-button" onClick={handleSettingButtonClick}>设置时间</div>
     </div>
   );
 }
