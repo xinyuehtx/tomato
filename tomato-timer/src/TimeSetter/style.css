@@ -1,5 +1,5 @@
 .timesetter-container {
-  height: 50px;
+  margin: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,15 @@
 
 .timesetter-number-container{
   font-size: 2em;
-  
+  margin: 0 5px;
+}
+
+.timesetter-button{
+  font-size: 0.8em;
+}
+
+.timesetter-number{
+
 }
 
 .timesetter-unit{
