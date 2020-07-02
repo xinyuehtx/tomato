@@ -103,7 +103,7 @@ function App() {
         <div className="setting-button" onClick={handleSettingButtonClick}>
           {
             showSetting
-              ? '完成设置'
+              ? '返回主界面'
               : '设置时间'
           }
         </div>

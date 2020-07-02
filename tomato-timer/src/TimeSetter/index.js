@@ -62,12 +62,12 @@ function TimeSetter(props) {
             <div className="timersetter-title">{title}</div>
             <div className="timesetter-number-container">
                 <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleAddHigh}>+</div>
-                <div className="timesetter-number">{highNum}</div>
+                <div className="timesetter-number" style={isEdit ? null : { 'border-style': 'hidden' }}>{highNum}</div>
                 <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleMinusHigh}>-</div>
             </div>
             <div className="timesetter-number-container">
                 <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleAddLow}>+</div>
-                <div className="timesetter-number">{lowNum}</div>
+                <div className="timesetter-number" style={isEdit ? null : { 'border-style': 'hidden' }}>{lowNum}</div>
                 <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleMinusLow}>-</div>
             </div>
             <div className="timesetter-unit">min</div>
