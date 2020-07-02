@@ -66,7 +66,6 @@ function App() {
   const handleSettingButtonClick = () => {
     if (showSetting) {
       setShowSetting(false);
-      workTimeDispatch({ type: 'set', count: 10 });
     }
     else {
       setShowSetting(true);

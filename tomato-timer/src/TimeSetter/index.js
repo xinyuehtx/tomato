@@ -6,15 +6,17 @@ function TimeSetter(props) {
 
     const { initTime, title, dispatch } = props;
 
-    const [highNum, setHighNum] = useState(0);
-    const [lowNum, setLowNum] = useState(0);
+    const high = Math.floor(initTime / 10);
+    const low = initTime % 10;
+
+    const [highNum, setHighNum] = useState(high);
+    const [lowNum, setLowNum] = useState(low);
+    const [isEdit, setIsEdit] = useState(false);
 
     useEffect(() => {
-        const high = Math.floor(initTime / 10);
-        const low = initTime % 10;
         setHighNum(high);
         setLowNum(low);
-    }, [initTime]);
+    }, [high, low]);
 
     const handleAddHigh = () => {
         setHighNum((num) => {
@@ -40,6 +42,20 @@ function TimeSetter(props) {
         });
     }
 
+    const onEditButtonClick = () => {
+        if (isEdit) {
+            const currentTime = highNum * 10 + lowNum;
+            if (currentTime === 0) {
+                alert('无法设置为时间为0，请调整');
+                return;
+            }
+            setIsEdit(false);
+            dispatch({ type: 'set', count: currentTime });
+        }
+        else {
+            setIsEdit(true);
+        }
+    }
 
     return (
         <div className="timesetter-container">
@@ -55,6 +71,7 @@ function TimeSetter(props) {
                 <div className="timesetter-button" onClick={handleMinusLow}>-</div>
             </div>
             <div className="timesetter-unit">min</div>
+            <div className="timesetter-eidt-button" onClick={onEditButtonClick}>{isEdit ? '确认' : '编辑'}</div>
         </div>
     );
 }
