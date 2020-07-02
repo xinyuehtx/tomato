@@ -1,6 +1,21 @@
-.setting-container {
-  height: 600px;
+.timesetter-container {
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.timersetter-title {
+  font-size: 1.5em;
+  margin-right: 30px;
+}
+
+.timesetter-number-container{
+  font-size: 2em;
+  
+}
+
+.timesetter-unit{
+  font-size: 1.5em;
+  margin-left: 20px;
 }
