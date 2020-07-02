@@ -61,14 +61,14 @@ function TimeSetter(props) {
         <div className="timesetter-container">
             <div className="timersetter-title">{title}</div>
             <div className="timesetter-number-container">
-                <div className="timesetter-button" onClick={handleAddHigh}>+</div>
+                <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleAddHigh}>+</div>
                 <div className="timesetter-number">{highNum}</div>
-                <div className="timesetter-button" onClick={handleMinusHigh}>-</div>
+                <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleMinusHigh}>-</div>
             </div>
             <div className="timesetter-number-container">
-                <div className="timesetter-button" onClick={handleAddLow}>+</div>
+                <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleAddLow}>+</div>
                 <div className="timesetter-number">{lowNum}</div>
-                <div className="timesetter-button" onClick={handleMinusLow}>-</div>
+                <div className="timesetter-button" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleMinusLow}>-</div>
             </div>
             <div className="timesetter-unit">min</div>
             <div className="timesetter-eidt-button" onClick={onEditButtonClick}>{isEdit ? '确认' : '编辑'}</div>
