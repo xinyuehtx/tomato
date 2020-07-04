@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 import * as runStates from '../constants'
 
@@ -46,7 +46,7 @@ function Timer(props) {
                     strokeWidth='2' strokeLinecap='round'
                     fill='transparent'
                     stroke='red'
-                    style={{ 'stroke-dashoffset': progress }} />
+                    style={{ strokeDashoffset: progress }} />
             </svg>
             <div className="timer-view">
                 <div className="time">{`${minutes}:${seconds}`}</div>

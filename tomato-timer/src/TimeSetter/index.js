@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import Modal from '../Modal';
 
@@ -65,12 +65,12 @@ function TimeSetter(props) {
             <div className="timersetter-title">{title}</div>
             <div className="timesetter-number-container">
                 <div className="timesetter-button-add" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleAddHigh}></div>
-                <div className="timesetter-number" style={isEdit ? null : { 'border-color': 'transparent' }}>{highNum}</div>
+                <div className="timesetter-number" style={isEdit ? null : { borderColor: 'transparent' }}>{highNum}</div>
                 <div className="timesetter-button-minus" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleMinusHigh}></div>
             </div>
             <div className="timesetter-number-container">
                 <div className="timesetter-button-add" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleAddLow}></div>
-                <div className="timesetter-number" style={isEdit ? null : { 'border-color': 'transparent' }}>{lowNum}</div>
+                <div className="timesetter-number" style={isEdit ? null : { borderColor: 'transparent' }}>{lowNum}</div>
                 <div className="timesetter-button-minus" style={isEdit ? { visibility: 'visible' } : { visibility: 'hidden' }} onClick={handleMinusLow}></div>
             </div>
             <div className="timesetter-unit">min</div>
