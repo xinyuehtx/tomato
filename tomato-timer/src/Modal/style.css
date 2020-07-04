@@ -1,12 +1,11 @@
 .modal-container {
   position: fixed;
-  width: 100vw;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   height: 100vh;
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.2);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.45);
   visibility: hidden;
   transition: visibility 300ms linear;
   z-index: 9999;
@@ -17,28 +16,36 @@
 }
 
 .modal-view {
+  position: relative;
+  top: 100px;
   width: 400px;
-  height: 150px;
-  border: 1px solid #666;
+  height: 160px;
   background-color: #fff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  border-radius: 2px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
 }
 
 .modal-message {
-  font-size: 1.5rem;
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-size: 16px;
   color: #333;
 }
 
 .modal-comfirm-button {
-  width: 80%;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 2px solid #666;
-  font-size: 2rem;
-  color: tomato;
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  right: 20px;
+  bottom: 20px;
+  border: 0;
+  border-radius: 2px;
+  background-color: cornflowerblue;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  color: white;
+  text-align: center;
   cursor: pointer;
 }
