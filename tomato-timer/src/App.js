@@ -32,11 +32,14 @@ function App() {
   const [showSetting, setShowSetting] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
 
-
-  useEffect(() => {
+  const resetTime = (inWork, workTime, restTime) => {
     inWork
       ? remainTimeDispatch({ type: 'set', count: workTime * 60 })
       : remainTimeDispatch({ type: 'set', count: restTime * 60 });
+  };
+
+  useEffect(() => {
+    resetTime(inWork, workTime, restTime);
   }, [inWork, workTime, restTime]);
 
   const handleClick = () => {
@@ -74,6 +77,7 @@ function App() {
     else {
       setShowSetting(true);
       setRun(runStates.INIT);
+      resetTime(inWork, workTime, restTime);
     }
   }
 
