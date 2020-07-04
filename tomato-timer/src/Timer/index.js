@@ -10,33 +10,28 @@ const formatTime = (time) => {
 }
 
 function Timer(props) {
-    const { run, initTime, onTimeout } = props;
-    const [remainTime, setRemainTime] = useState(0);
-
-    useEffect(() => {
-        setRemainTime(initTime * 60);
-    }, [initTime]);
+    const { run, time, timeDispatch, initTime, onTimeout } = props;
 
     useEffect(() => {
         let interval;
         if (run === runStates.RUNNING) {
             interval = setInterval(() => {
-                setRemainTime((r) => r - 1);
+                timeDispatch({ type: 'minusOne' });
 
             }, 1000);
         }
         return () => { clearInterval(interval) };
-    }, [run]);
+    }, [run, timeDispatch]);
 
     useEffect(() => {
-        if (run === runStates.RUNNING && remainTime < 0) {
+        if (run === runStates.RUNNING && time <= 0) {
             onTimeout && onTimeout();
         }
-    }, [run, remainTime, onTimeout]);
+    }, [run, time, onTimeout]);
 
-    const [minutes, seconds] = formatTime(remainTime);
+    const [minutes, seconds] = formatTime(time);
 
-    const progress = (1 - (remainTime - 1) / (initTime * 60)) * 3.14 * 98;
+    const progress = (1 - (time - 1) / (initTime * 60)) * 3.14 * 98;
 
     return (
         <div className="root">

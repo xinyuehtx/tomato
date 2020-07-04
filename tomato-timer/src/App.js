@@ -14,22 +14,30 @@ const reducer = (state, action) => {
   }
 }
 
+const timeReducer = (state, action) => {
+  switch (action.type) {
+    case 'set': return action.count;
+    case 'minusOne': return state > 0 ? state - 1 : 0;
+    default: throw new Error('Unexpected action');
+  }
+}
+
 
 function App() {
   const [run, setRun] = useState(runStates.INIT);
   const [inWork, setInWork] = useState(true);
-  const [initTime, setInitTime] = useState(1);
   const [workTime, workTimeDispatch] = useReducer(reducer, 25);
   const [restTime, restTimeDispatch] = useReducer(reducer, 5);
+  const [remainTime, remainTimeDispatch] = useReducer(timeReducer, workTime);
   const [showSetting, setShowSetting] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
 
 
   useEffect(() => {
-    if (run === runStates.INIT) {
-      inWork ? setInitTime(workTime) : setInitTime(restTime);
-    }
-  }, [run, inWork, workTime, restTime]);
+    inWork
+      ? remainTimeDispatch({ type: 'set', count: workTime * 60 })
+      : remainTimeDispatch({ type: 'set', count: restTime * 60 });
+  }, [inWork, workTime, restTime]);
 
   const handleClick = () => {
     setRun((r) => {
@@ -43,7 +51,6 @@ function App() {
   }
 
   const handleRestClick = () => {
-    debugger;
     if (run === runStates.INIT) {
       setRun(runStates.RUNNING);
     }
@@ -54,9 +61,9 @@ function App() {
   }
 
   const handleTimeout = () => {
+    console.log('timeout')
     setRun(runStates.INIT);
-    const newWorkState = !inWork
-    setInWork(newWorkState);
+    setInWork((workState) => !workState);
     setIsModalShown(true);
   }
 
@@ -78,7 +85,8 @@ function App() {
           showSetting
             ? <Setting />
             : <>
-              <Timer run={run} initTime={initTime} onTimeout={handleTimeout} />
+              <Timer run={run} time={remainTime} timeDispatch={remainTimeDispatch}
+                onTimeout={handleTimeout} initTime={inWork ? workTime : restTime} />
               {
                 inWork
                   ? <div className="main-button" onClick={handleClick}>{
