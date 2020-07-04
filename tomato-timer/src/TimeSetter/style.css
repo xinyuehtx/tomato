@@ -14,7 +14,7 @@
 
 .timesetter-number-container{
   font-size: 2em;
-  margin: 0 5px;
+  margin: 0 1px;
 }
 
 .timesetter-button{
@@ -24,8 +24,8 @@
 
 .timesetter-number{
   font-size: 1.5em;
-  width: 50px;
-  border-radius: 5px;
+  width: 30px;
+  border-radius: 1px;
   border: 1px solid tomato;
 }
 
