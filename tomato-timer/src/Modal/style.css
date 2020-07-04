@@ -9,8 +9,36 @@
   justify-content: center;
   visibility: hidden;
   transition: visibility 300ms linear;
+  z-index: 9999;
 }
 
 .modal-container-active {
   visibility: visible;
+}
+
+.modal-view {
+  width: 400px;
+  height: 150px;
+  border: 1px solid #666;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-message {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.modal-comfirm-button {
+  width: 80%;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #666;
+  font-size: 2rem;
+  color: tomato;
+  cursor: pointer;
 }

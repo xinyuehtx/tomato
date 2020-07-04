@@ -6,8 +6,10 @@ function Modal(props) {
     console.log(isShown)
     return (
         <div className={`${'modal-container'} ${isShown && 'modal-container-active'}`} onClick={onOutsideClick}   >
-            <div >{message}</div>
-            <div onClick={onComfirm} >确定</div>
+            <div className='modal-view'>
+                <div className='modal-message'>{message}</div>
+                <div className='modal-comfirm-button' onClick={onComfirm} >确定</div>
+            </div>
         </div>
     );
 }
