@@ -4,6 +4,7 @@ import Timer from './Timer/index';
 import Setting from './Setting/index';
 import * as runStates from './constants';
 import SettingContext from './context';
+import Modal from './Modal';
 
 
 const reducer = (state, action) => {
@@ -21,6 +22,7 @@ function App() {
   const [workTime, workTimeDispatch] = useReducer(reducer, 25);
   const [restTime, restTimeDispatch] = useReducer(reducer, 5);
   const [showSetting, setShowSetting] = useState(false);
+  const [isModalShown, setIsModalShown] = useState(false);
 
 
   useEffect(() => {
@@ -55,12 +57,7 @@ function App() {
     setRun(runStates.INIT);
     const newWorkState = !inWork
     setInWork(newWorkState);
-    if (newWorkState) {
-      alert('休息时间结束');
-    }
-    else {
-      alert('工作时间结束');
-    }
+    setIsModalShown(true);
   }
 
   const handleSettingButtonClick = () => {
@@ -107,6 +104,8 @@ function App() {
               : '设置时间'
           }
         </div>
+        <Modal isShown={isModalShown} onComfirm={() => setIsModalShown(false)}
+          message={inWork ? '休息时间结束' : '工作时间结束'} />
       </div>
     </SettingContext.Provider>
   );

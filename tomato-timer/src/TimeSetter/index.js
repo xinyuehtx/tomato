@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import './style.css';
+import Modal from '../Modal';
 
 
 function TimeSetter(props) {
@@ -12,6 +13,8 @@ function TimeSetter(props) {
     const [highNum, setHighNum] = useState(high);
     const [lowNum, setLowNum] = useState(low);
     const [isEdit, setIsEdit] = useState(false);
+    const [isModalShown, setIsModalShown] = useState(false);
+
 
     useEffect(() => {
         setHighNum(high);
@@ -46,7 +49,7 @@ function TimeSetter(props) {
         if (isEdit) {
             const currentTime = highNum * 10 + lowNum;
             if (currentTime === 0) {
-                alert('无法设置为时间为0，请调整');
+                setIsModalShown(true);
                 return;
             }
             setIsEdit(false);
@@ -72,6 +75,7 @@ function TimeSetter(props) {
             </div>
             <div className="timesetter-unit">min</div>
             <div className="timesetter-eidt-button" onClick={onEditButtonClick}>{isEdit ? '确认' : '编辑'}</div>
+            <Modal message='无法设置为时间为0，请调整' isShown={isModalShown} onComfirm={() => setIsModalShown(false)} />
         </div>
     );
 }
